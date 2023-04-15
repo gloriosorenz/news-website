@@ -1,0 +1,506 @@
+@use 'colors';
+@use 'variables';
+@use 'mixins';
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body, html{
+    font-family: variables.$main-font;
+    background: colors.$white-1;
+}
+
+.wrapper {
+    position: relative;
+}
+
+header {
+    width: 100%;
+    height: 80px;
+    padding: 0 100px;
+    background: colors.$dark-blue;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo {
+        font-size: 30px;
+        font-weight:  700;
+        color: colors.$yellow;
+    }
+    
+    .hamburger {
+        display: none;
+    }
+
+    .nav-bar {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+
+        ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            
+            .nav-link {
+                display: block;
+                @include mixins.nav-heading(colors.$white-1);
+            }
+
+            .nav-link:hover, .nav-link.active {
+                color: colors.$yellow;
+                text-decoration: underline;
+            }
+
+        }
+
+        .login-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+
+            .signup {
+                font-size: 16px;
+                color: colors.$gray-2;
+                background: transparent;
+                text-decoration: none;
+            }
+
+            .signup:hover {
+                padding: 16px 20px;
+                border: 1px solid colors.$gray-2;
+                border-radius: 40px;   
+                transition: 0.5s;
+            }
+
+            .login {
+                font-size: 16px;
+                color: colors.$blue;
+                background: transparent;
+                text-decoration: none; 
+            }
+            
+            .login:hover {
+                padding: 16px 20px;
+                border: 1px solid colors.$blue;
+                border-radius: 40px;  
+                transition: 0.5s;
+            }
+        } 
+    }
+}
+
+
+main {
+    padding: 60px 80px;
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+        
+    .card {
+        position: relative;
+        width: 320px;
+        height: 300px;
+
+        border-radius: 6px;
+        border-color: transparent;
+
+        // when button/icon is clicked
+        i.fa-solid {
+            color: colors.$blue;
+        }
+
+        i.fa-circle-xmark{
+            display: none;
+        }
+
+        i.fa-circle-xmark {
+            position: absolute;
+            z-index: 1;
+
+            left: 89.06%;
+            right: 4.69%;
+            top: 5%;
+            bottom: 88.33%;
+
+            width: 20px;
+            height: 20px;
+            color: colors.$gray-2;
+        }
+
+        i.fa-circle-xmark:hover {
+            color: colors.$blue;
+        }
+
+    
+        .card-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 10px 20px;
+            gap: 10px;
+
+            position: absolute;
+            bottom: 0px;
+
+            background: colors.$white-2;
+            border-radius: 0px 0px 6px 6px;
+
+            // when card is clicked
+            .read {
+                display: block;
+            }
+
+            // to hide the "read" icon first
+            i.fa-circle-check{
+                display: none;
+            }
+
+            i.fa-circle-check:hover{
+                color: colors.$blue;
+            }
+
+            .card-title {
+                @include mixins.card-heading();
+            }
+        
+            .card-line {
+                width: 280px;
+                border: 0.5px solid colors.$gray-2;
+            }
+
+            .card-footer {
+                width: 100%;
+                display:  flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                
+                @include mixins.card-footer-heading(colors.$gray-2);
+
+                .card-date {
+                    border: 1px solid #C0BFCF;
+                    border-radius: 40px;
+                    padding: 4px 10px;
+                }
+
+                // heart icon
+                i.fa-heart:hover{
+                    color: colors.$blue;
+                }
+                
+            }
+        }
+    
+        .card-image {
+            display: block;
+            height: 250px;
+            border-radius: 6px;
+            background: linear-gradient(180deg, #192140 0%, rgba(25, 33, 64, 0) 70.8%);
+        }
+        
+        .card-shadow {
+            position: absolute;
+            height: 250px;
+            left: 0px;
+            right: 0px;
+            top: 0px;
+
+            display: none;
+            
+            border-radius: 6px;
+            background: linear-gradient(180deg, #192140 0%, rgba(25, 33, 64, 0) 70.8%);
+        }
+    }
+
+    // when user hovers a card
+    .card:hover {
+        cursor: pointer;
+
+        // show xmark button
+        i.fa-circle-xmark {
+            display: block;
+        }
+
+        // show check button
+        i.fa-circle-check {
+            display: block;
+        }
+
+        // show check icon
+        .card-shadow {
+            display: block;
+
+        }
+    }
+}
+
+
+
+
+
+footer {
+    padding: 60px 80px;
+    background: colors.$black;
+    height: auto;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content: center;
+    gap: 120px;
+
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 40px;
+        
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            gap: 36px;
+    
+            .footer-title{
+                font-size: 16px;
+                font-weight: bold;
+                color: colors.$white-1;
+            }
+    
+            ul {
+                font-size: 12px;
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: row;
+                gap: 20px;
+                list-style: none;
+    
+    
+                li a {
+                    font-size: 12px;
+                    text-decoration: none;
+                    color: colors.$white-1;
+                }
+
+                li a:hover {
+                    color: colors.$yellow;
+                }
+            }
+        }
+    }
+
+    .contacts-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .contacts-section{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+
+            gap: 10px;
+            p {
+                color: colors.$white-1;
+                font-size: 12px;
+            }
+    
+            ul {
+                display: flex;
+                flex-direction: row;
+                gap: 15px;
+                list-style: none;
+    
+    
+                .fa-brands {
+                    color: colors.$white-1;
+                }
+
+                .fa-brands:hover{
+                    cursor: pointer;
+                    color: colors.$yellow;
+                }
+            }
+        }
+    }
+
+    .copyright-section {    
+        ul {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+
+            li p {
+                font-size: 12px;
+                color: colors.$gray-2;
+            }   
+        }
+    }
+}
+
+
+
+
+@media only screen and (max-width: 1320px) {
+    header {
+        padding: 0 50px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    header {
+        padding: 0 30px;
+    }
+
+    main {
+        padding: 60px 30px;
+        display: flex;
+
+        .row {
+            display:flex;
+        }
+    }
+}
+
+@media only screen and (max-width: 1175px) {
+    footer {
+        justify-content: flex-start; 
+
+        .contacts-container{
+            gap: 50px;
+        }
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    header {
+        width: 100%;
+
+        .hamburger {
+            display: block;
+            cursor: pointer;
+            border: 1px solid #0266FF;
+            border-radius: 50%;
+            padding: 12px 14px;
+        }
+        .fa-bars {
+            color: colors.$blue;
+        }
+        .nav-bar {
+            height: 0;
+            width: 100vw;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            right: 0;
+            flex-direction: column;
+
+            background-color: colors.$dark-blue;
+            transition: 0.2s;
+            overflow: hidden;
+        }
+       
+        .nav-bar ul {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            transform: 0.5s;
+            opacity: 0;
+        }
+       
+        .nav-bar ul li a {
+            margin-bottom: 12px;
+        }
+
+        .nav-bar.active {
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .nav-bar.active ul{
+            opacity: 1; 
+         }
+    }
+
+    main {
+        padding: 60px 20px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    main {
+        padding: 40px 0;
+        gap: 15px;
+
+        .card {
+            width: 290px;
+            height: 257px;
+
+            .card-info {
+                width: 290px;
+
+                .card-line {
+                    width: 250px;
+                }
+            }
+
+            .card-image {
+                width: 290px;
+            }
+        }
+        
+    }
+
+    footer {
+        padding: 40px 15px;
+        flex-direction: column;
+        gap: 40px;
+
+        .footer-container{
+            .footer-section {
+                gap: 10px;
+
+                ul {
+                    flex-wrap: wrap;
+                }
+            }
+        }
+
+        .contacts-container {
+            .contacts-section {
+                p {
+                    color: colors.$gray-2;
+                }
+                ul {
+                    flex-wrap: wrap;
+                    gap: 13px;
+
+                    .fa-brands{
+                        font-size: 30px;
+                    }
+                }
+            }
+
+        }
+    }
+
+}

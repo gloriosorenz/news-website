@@ -1,0 +1,21 @@
+
+
+@mixin nav-heading($color: #ffff){
+    color: $color;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+@mixin card-heading(){
+    font-weight: 700;
+    font-size: 20px;
+}
+
+@mixin card-footer-heading($color: #ffff){
+    color: $color;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15.6px;
+    text-align: center;
+}
